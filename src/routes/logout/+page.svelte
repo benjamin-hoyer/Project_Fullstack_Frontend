@@ -1,7 +1,7 @@
 <script>
     import { goto } from "$app/navigation";
-    import { hikingService } from "../../services/hiking_service.ts";
+    import { userService } from "../../services/user_service.ts";
 
-    hikingService.logout();
+    userService.logout();
     goto("/");
 </script>

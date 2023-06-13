@@ -1,34 +1,18 @@
 <script>
-    import { goto } from "$app/navigation";
-    import { hikingService } from "../../services/hiking_service.ts";
+    import StartMenu from "$lib/menus/start_menu.svelte";
+    import SignUp from "$lib/forms/signup.svelte";
 
-    let email = "";
-    let password = "";
-    let errorMessage = "";
-
-    async function login() {
-        console.log(`attemting to log in email: ${email} with password: ${password}`);
-        let success = await hikingService.login(email, password);
-        if (success) {
-            goto("/");
-        } else {
-            email = "";
-            password = "";
-            errorMessage = "Invalid Credentials";
-        }
-    }
 </script>
 
-<form on:submit|preventDefault={login}>
-    <div class="field">
-        <label class="label" for="email">Email</label>
-        <input bind:value={email} class="input" id="email" name="email" placeholder="Enter email" type="text" />
+
+<StartMenu active="signup"/>
+<div class="columns" style="margin-top: 5%">
+    <div class="column is-two-thirds">
+        <figure class="image">
+            <img src="/sunset_regensburg_besser.jpg" alt="Not loading"/>
+        </figure>
     </div>
-    <div class="field">
-        <label class="label" for="password">Password</label>
-        <input bind:value={password} class="input" id="password" name="password" placeholder="Enter Password" type="password" />
+    <div class="column">
+        <SignUp/>
     </div>
-    <div class="field is-grouped">
-        <button class="button is-link">Log In</button>
-    </div>
-</form>
+</div>

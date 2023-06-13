@@ -3,13 +3,14 @@ export interface User {
     lastName: string;
     email: string;
     password: string;
-    _id: string;
+    role: string;
 }
 
 export interface LoggedInUser {
     email: string;
     token: string;
     _id: string;
+    role: string;
 }
 
 export interface Hike {
@@ -21,15 +22,15 @@ export interface Hike {
     description: string;
     categoryid: string;
     lat: number;
-    lng: number;
+    long: number;
     _id: string;
-    img: string;
+    img: [string];
     visibility: string;
 }
 
 export interface Category {
     name: string;
     hikes: [Hike];
-    userid: LoggedInUser;
+    userid: string;
     _id: string;
 }

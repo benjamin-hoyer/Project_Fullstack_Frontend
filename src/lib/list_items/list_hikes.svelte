@@ -1,10 +1,10 @@
 <script lang="ts">
     import type { Hike } from '../../services/hiking_types';
-    import HikeImg from '../images/hike_img.svelte'
+    import HikeImg from '../images/hike_card.svelte'
     export let hikes: Hike[];
 </script>
 
-<div class="container " style="margin-top: 30px">
+<div data-sveltekit-preload-data="tap" class="container " style="margin-top: 30px">
     <div class="columns is-multiline is-3>">
         {#each hikes as hike}
         <div class="column is-one-third">

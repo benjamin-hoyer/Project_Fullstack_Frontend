@@ -1,10 +1,12 @@
-import { hikingService} from "../services/hiking_service";
+import { userService} from "../services/user_service.ts";
+import { hikeService } from "../services/hike_service.ts";
+import { categoryService } from "../services/category_service.ts";
 export const ssr = false;
 export const load = async () => {
-    hikingService.checkPageRefresh();
+    userService.checkPageRefresh();
 
     return {
-        publicHikes: await hikingService.getPublicHikes(),
-        categories: await hikingService.getCategories()
+        publicHikes: await hikeService.getPublicHikes(),
+        categories: await categoryService.getCategories()
     };
 };

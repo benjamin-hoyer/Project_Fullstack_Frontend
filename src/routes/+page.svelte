@@ -14,9 +14,9 @@
 </script>
 
 {#if $userStore.email}
-    <Menu/>
+    <Menu  active="allhikes"/>
 {:else}
-    <StartMenu/>
+    <StartMenu active="allhikes"/>
 {/if}
 <Filter categories={data.categories}/>
 <ListHikes hikes={$filteredPublicHikeStore}/>

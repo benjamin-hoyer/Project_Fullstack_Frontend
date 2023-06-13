@@ -1,13 +1,21 @@
-import { hikingService} from "../../../../../services/hiking_service";
+import { userStore} from "../../../../../stores";
+import { userService} from "../../../../../services/user_service.ts";
+import { hikeService } from "../../../../../services/hike_service.ts";
+import { categoryService } from "../../../../../services/category_service.ts";
+import {get} from "svelte/store";
+import {error} from "@sveltejs/kit";
 export const ssr = false;
 
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 export const load = async ({ params }) => {
-    hikingService.checkPageRefresh();
-
+    userService.checkPageRefresh();
+    const user = get(userStore);
+    if (user.email === "") {
+        throw error(401, 'You have to be logged in to view this page');
+    }
     return {
-        hike: await hikingService.getHike(params.hikeid),
-        category: await hikingService.getCategory(params._id),
+        hike: await hikeService.getHike(params.hikeid),
+        category: await categoryService.getCategory(params._id),
     };
 };
