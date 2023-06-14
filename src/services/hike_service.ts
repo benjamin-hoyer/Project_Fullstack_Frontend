@@ -82,5 +82,18 @@ export const hikeService = {
             return Promise.reject('Hike not found');
 
         }
-    }
+    },
+
+    async getHikesByCategory(id: string): Promise<Hike[]> {
+        try {
+            const response = await axios.get(`${this.baseUrl}/api/categories/${id}/hikes`);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return [];
+        }
+    },
+
+
+
 };

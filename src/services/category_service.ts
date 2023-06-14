@@ -25,15 +25,15 @@ export const categoryService = {
         }
     },
 
-    async getHikesByCategory(category: string): Promise<Hike[]> {
+
+    async getCategoriesByUserId(_id: string) {
         try {
-            const response = await axios.get(`${this.baseUrl}/api/hikes/category/${category}`);
+            const response = await axios.get(`${this.baseUrl}/api/users/${_id}/categories`)
             return response.data;
         } catch (error) {
             console.log(error);
             return [];
         }
+
     }
-
-
 };
