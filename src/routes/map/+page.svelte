@@ -7,15 +7,16 @@
 
     let hikingMarkerLayer;
     let hikingMarkerLayerEnd;
-    let map: LeafletMap;export let data: PageData;
+    let markerLayers = [];
+    export let data: PageData;
 
     onMount(async () => {
         hikingMarkerLayer = getMarkerLayer(data.hikes);
         hikingMarkerLayerEnd = getMarkerLayerEnd(data.hikes);
-        map.populateLayer(hikingMarkerLayer, hikingMarkerLayerEnd);
+        markerLayers = [hikingMarkerLayer, hikingMarkerLayerEnd];
     });
 
 </script>
 
 <Menu active="map"/>
-<LeafletMap bind:this={map} />
+<LeafletMap markerLayers={[getMarkerLayer(data.hikes), getMarkerLayerEnd(data.hikes)]} />

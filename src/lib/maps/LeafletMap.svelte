@@ -1,11 +1,12 @@
 <script lang="ts">
-    import {onMount} from "svelte";
+    import {onDestroy, onMount} from "svelte";
     import L from 'leaflet';
-    import type {LatLng, Control, Layer, LayerGroup, Map as LeafletMap, Marker} from "leaflet";
+    import  {LatLng, type Control, type Layer, type LayerGroup, type Map as LeafletMap, type Marker} from "leaflet";
     import type {MarkerLayer, MarkerSpec} from "../../services/markers";
     import {markerSelected} from "../../stores";
 
     export let id = "home-map-id";
+    console.log(id)
     export let height = 80;
     export let location = {lat: 48.2734, lng: 11.7783203};
     export let zoom = 6;
@@ -17,23 +18,31 @@
     let control: Control.Layers;
     let overlays: Control.LayersObject = {};
     let markerMap = new Map<Marker, MarkerSpec>();
-    let baseLayers: any;
+    export let marker: MarkerSpec = {
+        categoryid: "", img: "", popup: false,
+        id: "",
+        title: "",
+        location: new LatLng(0, 0)
+    };
+    export let markerLayers: MarkerLayer[] = [];
+
+    let baseLayers: any = {
+        Terrain: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+            maxZoom: 17,
+            attribution:
+                'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
+        }),
+        Satellite: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
+            attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
+        })
+    };
     let polyLine: [LatLng] = [];
     let polyLineEnd: [LatLng] = [];
 
     onMount(async () => {
 
-        baseLayers = {
-            Terrain: L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-                maxZoom: 17,
-                attribution:
-                    'Map data: &copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, <a href="http://viewfinderpanoramas.org">SRTM</a> | Map style: &copy; <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
-            }),
-            Satellite: L.tileLayer("https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}", {
-                attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
-            })
-        };
         let defaultLayer = baseLayers[activeLayer];
+
         imap = L.map(id, {
             center: [location.lat, location.lng],
             zoom: zoom,
@@ -41,6 +50,18 @@
             layers: [defaultLayer]
         });
         addControl();
+        if (marker.id) {
+            addPopupMarkerAndZoom("default", marker);
+        }
+        if (markerLayers) {
+            populateLayer(markerLayers[0]);
+            populateLayer(markerLayers[1]);
+            drawPolyLines();
+        }
+    });
+    onDestroy(() => {
+        if(imap)
+        imap.remove();
     });
 
     export function addPopupMarkerAndZoom(layer: string, marker: MarkerSpec) {
@@ -52,14 +73,17 @@
     }
 
     function drawPolyLines() {
+        let group = L.layerGroup([]);
+
         for (let i = 0; i < polyLine.length; i++) {
-            console.log(polyLine[i]);
              let polyline = L.polyline( [polyLine[i], polyLineEnd[i]],{color: 'red'}).addTo(imap);
-             polyline.bindTooltip("Start");
+            polyline.addTo(group)
         }
+        addLayer("Route", group);
+        control.addOverlay(group, "Route");
     }
 
-    export function populateLayer(markerLayer: MarkerLayer, markerLayerEnd: MarkerLayer) {
+    export function populateLayer(markerLayer: MarkerLayer) {
         let group = L.layerGroup([]);
         markerLayer.markerSpecs.forEach((markerSpec) => {
             let marker = L.marker([markerSpec.location.lat, markerSpec.location.lng]);
@@ -78,36 +102,16 @@
                 const markerSpec = markerMap.get(marker);
                 markerSelected.set(markerSpec);
             });
-            polyLine.push(markerSpec.location)
+            // For the Routes between the markers:
+            if (markerLayer.title === "Start Points") {
+                polyLine.push(markerSpec.location);
+            }
+            else
+                polyLineEnd.push(markerSpec.location);
 
         });
         addLayer(markerLayer.title, group);
         control.addOverlay(group, markerLayer.title);
-
-        let groupEnd = L.layerGroup([]);
-        markerLayerEnd.markerSpecs.forEach((markerSpec) => {
-            let marker = L.marker([markerSpec.location.lat, markerSpec.location.lng]);
-            const newPopup = L.popup({autoClose: false, closeOnClick: true});
-            if (markerSpec.popup) {
-                const imgString = "<figure class=\"image is4by3\"><img src='" + markerSpec.img + "' width='100%' alt='not found'/></figure>"
-                const link = "<a class='subtitle is-6' href='category/" + markerSpec.categoryid + "/hike/"+ markerSpec.id +"'>" + markerSpec.title + "</a>"
-                newPopup.setContent(link + imgString);
-            }
-            marker.bindPopup(newPopup);
-            marker.bindTooltip(markerSpec.title);
-            marker.addTo(groupEnd);
-            markerMap.set(marker, markerSpec);
-            marker.addTo(groupEnd).on("popupopen", (event: any) => {
-                const marker = event.popup._source;
-                const markerSpec = markerMap.get(marker);
-                markerSelected.set(markerSpec);
-            });
-            polyLineEnd.push(markerSpec.location)
-        });
-        addLayer(markerLayerEnd.title, groupEnd);
-        control.addOverlay(groupEnd, markerLayerEnd.title);
-
-        drawPolyLines();
     }
 
     function addControl() {
@@ -149,7 +153,7 @@
             closeOnClick: false,
             closeButton: false
         })
-            .setLatLng({lat: location.lat, lng: location.lng})
+            .setLatLng({lat: location.lat, lng: location.lng} )
             .setContent(content + imgString);
         popup.addTo(popupGroup);
     }
