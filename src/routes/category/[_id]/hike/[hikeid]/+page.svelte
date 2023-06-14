@@ -22,7 +22,7 @@
     </div>
     <div class="columns is-vcentered">
         <div class="column" style="margin: 0 auto auto">
-            {#if $userStore._id === category.userid}
+            {#if $userStore._id === category.userid || $userStore.role === "admin"}
                 <UpdateHike hike="{hike}"/>
             {:else}
                 <UpdateHikeReadonly hike="{hike}"/>
@@ -30,7 +30,7 @@
         </div>
         <div class="column" style="margin: 0 auto auto">
             <ImgCarousel images="{$imageStore}"/>
-            {#if $userStore._id === category.userid}
+            {#if $userStore._id === category.userid || $userStore.role === "admin"}
             <UploadImage hike="{hike}"/>
             {/if}
         </div>

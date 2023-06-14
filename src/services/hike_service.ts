@@ -5,7 +5,6 @@ export const hikeService = {
     baseUrl: "http://localhost:4000",
 
 
-
     async getPublicHikes(): Promise<Hike[]> {
         try {
             const response = await axios.get(`${this.baseUrl}/api/publichikes`);
@@ -71,7 +70,17 @@ export const hikeService = {
             console.log(error);
             return false;
         }
+    },
+
+
+    async getAllHikes(): Promise<Hike[]> {
+        try {
+            const response = await axios.get(`${this.baseUrl}/api/hikes`);
+            return response.data;
+        } catch (error) {
+            console.log(error);
+            return Promise.reject('Hike not found');
+
+        }
     }
-
-
 };

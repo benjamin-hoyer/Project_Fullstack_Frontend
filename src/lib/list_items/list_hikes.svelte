@@ -31,6 +31,7 @@
                 </div>
             </div>
         </div>
+<!--            <Card hike="{hike}"/>-->
         {/each}
     </div>
 </div>

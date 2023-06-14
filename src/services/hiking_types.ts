@@ -23,6 +23,8 @@ export interface Hike {
     categoryid: string;
     lat: number;
     long: number;
+    latend: number;
+    longend: number;
     _id: string;
     img: [string];
     visibility: string;

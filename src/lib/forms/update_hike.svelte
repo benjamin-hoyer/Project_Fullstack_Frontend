@@ -62,6 +62,17 @@
             </div>
         </div>
     </div>
+    <label class="label">Latitude / Longitude (End)</label>
+    <div class="field is-horizontal">
+        <div class="field-body">
+            <div class="field">
+                <input class="input" type="text" bind:value="{hike.latend}" name="latend">
+            </div>
+            <div class="field">
+                <input class="input" type="text" bind:value="{hike.longend}" name="longend">
+            </div>
+        </div>
+    </div>
     <div class="field">
         <label class="label">Visibility
         <input class="input" type="text" bind:value="{hike.visibility}" name="visibility"></label>

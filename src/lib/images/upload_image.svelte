@@ -3,20 +3,25 @@
     import {hikeService} from "../../services/hike_service.js";
     import type {Hike} from "../../services/hiking_types.ts";
     import {imageStore} from "../../stores.ts";
-    let imageinput;
+    let imageInput;
     let message;
     export let hike: Hike;
 
+    let imageInputString = "Choose a file…";
+
     async function uploadImage() {
-        let success = await hikeService.uploadImage(hike._id, imageinput.files[0]);
+        let success = await hikeService.uploadImage(hike._id, imageInput.files[0]);
         hike = await hikeService.getHike(hike._id);
         if (success) {
             message = "Upload successful";
             imageStore.set(hike.img);
+            imageInputString = "Choose a file…";
+            imageInput.value = null;
         } else {
             message = ("Upload failed");
         }
     }
+
 
 </script>
 
@@ -25,13 +30,13 @@
         <form on:submit|preventDefault={uploadImage}>
             <div id="file-select" class="file has-name is-fullwidth">
                 <label class="file-label">
-                    <input class="file-input" type="file" name="resume" accept="image/*" bind:this={imageinput}>
+                    <input class="file-input" type="file" name="resume" accept="image/*" bind:this={imageInput} on:change={() => imageInputString=imageInput.files[0].name}>
                     <span class="file-cta">
                           <span class="file-icon">
                             <i class="fas fa-upload"></i>
                           </span>
                           <span class="file-label">
-                            Choose a file…
+                            {imageInputString}
                           </span>
                      </span>
                     <span class="file-name"></span>

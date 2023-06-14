@@ -50,6 +50,17 @@
             </div>
         </div>
     </div>
+    <label class="label">Latitude / Longitude (End)</label>
+    <div class="field is-horizontal">
+        <div class="field-body">
+            <div class="field">
+                <input class="input" type="text" value="{hike.latend}" name="latend" readonly>
+            </div>
+            <div class="field">
+                <input class="input" type="text" value="{hike.longend}" name="longend" readonly>
+            </div>
+        </div>
+    </div>
     <div class="field">
         <label class="label">Visibility
         <input class="input" type="text" value="{hike.visibility}" name="visibility" readonly></label>
