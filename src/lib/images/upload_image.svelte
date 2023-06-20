@@ -3,22 +3,25 @@
     import {hikeService} from "../../services/hike_service.js";
     import type {Hike} from "../../services/hiking_types.ts";
     import {imageStore} from "../../stores.ts";
+    import Error from "$lib/error_message.svelte";
     let imageInput;
     let message;
     export let hike: Hike;
 
     let imageInputString = "Choose a file…";
+    const error_message = "Upload failed";
+    const success_message = "Upload successful";
 
     async function uploadImage() {
         let success = await hikeService.uploadImage(hike._id, imageInput.files[0]);
         hike = await hikeService.getHike(hike._id);
         if (success) {
-            message = "Upload successful";
+            message = success_message;
             imageStore.set(hike.img);
             imageInputString = "Choose a file…";
             imageInput.value = null;
         } else {
-            message = ("Upload failed");
+            message = (error_message);
         }
     }
 
@@ -48,22 +51,4 @@
 </div>
 
 
-{#if message === "Upload failed"}
-    <div class="section">
-        <div class="message is-danger">
-            <div class="message-body">
-                {message}
-                <button class="delete" on:click={() => message = null} style="margin-left: 60%"></button>
-            </div>
-        </div>
-    </div>
-{:else if message === "Upload successful"}
-    <div class="section">
-        <div class="message is-success">
-            <div class="message-body">
-                {message}
-                <button class="delete" on:click={() => message = null} style="margin-left: 60%"></button>
-            </div>
-        </div>
-    </div>
-{/if}
+<Error bind:message={message} success_message={success_message} error_message={error_message} />
