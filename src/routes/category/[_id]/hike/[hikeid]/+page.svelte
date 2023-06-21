@@ -11,6 +11,7 @@
 
     export let data: PageData;
     const hike = data.hike;
+    let index = 0;
     imageStore.set(hike.img);
     const category = data.category;
 </script>
@@ -29,9 +30,9 @@
             {/if}
         </div>
         <div class="column" style="margin: 0 auto auto">
-            <ImgCarousel images="{$imageStore}"/>
+            <ImgCarousel images={$imageStore} bind:index={index} />
             {#if $userStore._id === category.userid || $userStore.role === "admin"}
-            <UploadImage hike="{hike}"/>
+            <UploadImage hike="{hike}" bind:index={index}/>
             {/if}
         </div>
     </div>

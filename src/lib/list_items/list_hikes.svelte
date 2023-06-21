@@ -51,12 +51,9 @@
         {/each}
         {#if addHike === true && category._id !== ""}
             <div class="column is-one-third" style="display:flex; border-style: dashed; border-radius: 30px">
-            <div class="button is-rounded" style="font-size: 4em;  margin: auto;">
-                <span class="icon">
-                    <a href="category/{category._id}/addHike">
-                        <i class="fa-solid fa-plus "></i></a>
-                </span>
-                </div>
+            <a class="button is-rounded" style="font-size: 4em;  margin: auto;" href="category/{category._id}/addHike">
+                        <i class="fa-solid fa-plus "></i>
+                </a>
             </div>
         {/if}
     </div>

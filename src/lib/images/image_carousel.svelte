@@ -1,18 +1,19 @@
 <script lang="ts">
     import HikeImg from "$lib/images/hike_card_carousel.svelte"
+    import {currentImageStore} from "../../stores.ts";
 
-    let currentIndex = 0;
+    export let index = 0;
     export let images: string[];
-    export let currentImage = images[currentIndex];
+
 
     function next() {
-        currentIndex = (currentIndex + 1) % images.length;
-        currentImage = images[currentIndex];
+        index = (index + 1) % images.length;
+        currentImageStore.set(images[index]);
     }
 
     function previous() {
-        currentIndex = (currentIndex - 1 + images.length) % images.length;
-        currentImage = images[currentIndex];
+        index = (index - 1 + images.length) % images.length;
+        currentImageStore.set(images[index]);
     }
 
 </script>
@@ -20,10 +21,10 @@
 
 <div class="container">
     <div class="box">
-        <HikeImg hikeImg="{currentImage}"/>
+        <HikeImg hikeImg="{$currentImageStore}"/>
         <div class="columns is-centered">
             {#each images as image, i}
-                {#if i === currentIndex}
+                {#if i === index}
                     <span class="icon">  <i class="fa-solid fa-circle"></i>  </span>
                 {:else}
                     <span class="icon"> <i class="fa-regular fa-circle"></i> </span>

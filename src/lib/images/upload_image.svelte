@@ -2,7 +2,7 @@
 
     import {hikeService} from "../../services/hike_service.js";
     import type {Hike} from "../../services/hiking_types.ts";
-    import {imageStore} from "../../stores.ts";
+    import {imageStore, currentImageStore} from "../../stores.ts";
     import Error from "$lib/error_message.svelte";
     let imageInput;
     let message;
@@ -11,6 +11,7 @@
     let imageInputString = "Choose a file…";
     const errorMessage = "Upload failed";
     const successMessage = "Upload successful";
+    export let index = 0;
 
     async function uploadImage() {
         let success = await hikeService.uploadImage(hike._id, imageInput.files[0]);
@@ -18,6 +19,8 @@
         if (success) {
             message = successMessage;
             imageStore.set(hike.img);
+            currentImageStore.set(hike.img[hike.img.length - 1]);
+            index = hike.img.length - 1;
             imageInputString = "Choose a file…";
             imageInput.value = null;
 

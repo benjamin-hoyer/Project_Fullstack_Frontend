@@ -40,7 +40,6 @@
                         {category.name}
                     </p>
             {/each}
-
         </div>
     </div>
 </div>
