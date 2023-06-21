@@ -1,5 +1,5 @@
 <script lang="ts">
-    import {publicHikeStore, userStore, filteredPublicHikeStore} from '../stores.js';
+    import {hikeStore, userStore, filteredHikeStore, activeCategoryStore} from '../stores.js';
     import StartMenu from "$lib/menus/start_menu.svelte";
     import Menu from "$lib/menus/menu.svelte";
     import ListHikes from "$lib/list_items/list_hikes.svelte";
@@ -8,8 +8,8 @@
     import {get} from "svelte/store";
 
     export let data: PageData;
-    publicHikeStore.set(data.publicHikes);
-    filteredPublicHikeStore.set(data.publicHikes);
+    hikeStore.set(data.publicHikes);
+    filteredHikeStore.set(data.publicHikes);
 
     function only_categories_with_hikes(hikes, categories) {
         const filtered_categories = [];
@@ -32,8 +32,5 @@
 {:else}
     <StartMenu active="allhikes"/>
 {/if}
-<Filter categories={only_categories_with_hikes(get(publicHikeStore), data.categories)}/>
-<ListHikes hikes={$filteredPublicHikeStore}/>
-
-
-
+<Filter categories={only_categories_with_hikes(get(hikeStore), data.categories)}/>
+<ListHikes hikes={$filteredHikeStore} addHike={false} category={undefined}} />

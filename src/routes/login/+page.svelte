@@ -1,6 +1,7 @@
 <script>
     import StartMenu from "$lib/menus/start_menu.svelte";
     import Login from "$lib/forms/login.svelte";
+    import Error from "$lib/error_message.svelte";
 </script>
 
 <StartMenu active="login"/>
@@ -14,3 +15,4 @@
         <Login/>
     </div>
 </div>
+

@@ -1,15 +1,15 @@
 <script>
 
     export let message = "";
-    export let error_message = "";
-    export let success_message = "";
+    export let errorMessage = "";
+    export let successMessage = "";
 
 
 </script>
 
 
 
-{#if message === error_message}
+{#if message === errorMessage}
     <div class="section">
         <div class="message is-danger">
             <div class="message-body" style="display: flex">
@@ -18,7 +18,7 @@
             </div>
         </div>
     </div>
-{:else if message === success_message}
+{:else if message === successMessage}
     <div class="section">
         <div class="message is-success">
             <div class="message-body" style="display: flex">

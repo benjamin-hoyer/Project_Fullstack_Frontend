@@ -1,10 +1,12 @@
 <script lang="ts">
     import {goto} from '$app/navigation';
     import {userService} from "../../services/user_service.ts";
+    import Error from "$lib/error_message.svelte";
 
     let email = '';
     let password = '';
     let errorMessage = '';
+    let message = 'Invalid email or password';
 
     async function login() {
         console.log(`attempting to log in email: ${email} with password: ${password}`);
@@ -14,7 +16,7 @@
         } else {
             email = '';
             password = '';
-            errorMessage = 'Invalid email or password';
+            errorMessage = message;
         }
     }
 </script>
@@ -35,9 +37,5 @@
     </div>
     </form>
 
-{#if errorMessage}
-    <div class="section">
-        {errorMessage}
-    </div>
-{/if}
+<Error bind:message={message} errorMessage={errorMessage} />
 

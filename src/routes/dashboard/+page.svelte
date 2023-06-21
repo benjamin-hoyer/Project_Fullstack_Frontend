@@ -1,25 +1,20 @@
 <script lang="ts">
-    import {publicHikeStore, userStore, filteredPublicHikeStore} from '../../stores.js';
-    import StartMenu from "$lib/menus/start_menu.svelte";
+    import {hikeStore, filteredHikeStore, activeCategoryStore} from '../../stores.js';
     import Menu from "$lib/menus/menu.svelte";
     import ListHikes from "$lib/list_items/list_hikes.svelte";
     import Filter from "$lib/category_filter.svelte";
     import type {PageData} from "./$types";
 
     export let data: PageData;
-    publicHikeStore.set(data.publicHikes);
-    filteredPublicHikeStore.set(data.publicHikes);
+    hikeStore.set(data.publicHikes);
+    filteredHikeStore.set(data.publicHikes);
 
 
 </script>
 
-{#if $userStore.email}
-    <Menu  active="allhikes"/>
-{:else}
-    <StartMenu active="allhikes"/>
-{/if}
+<Menu  active="dashboard"/>
 <Filter categories={data.categories}/>
-<ListHikes hikes={$filteredPublicHikeStore}/>
+<ListHikes hikes={$filteredHikeStore} addHike={true} category={$activeCategoryStore}/>
 
 
 

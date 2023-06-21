@@ -1,15 +1,22 @@
 <script lang="ts">
-    import type {Hike} from '../../services/hiking_types';
+    import type {Category, Hike} from '../../services/hiking_types';
     import HikeImg from '../images/hike_card.svelte'
     import LeafletMap from "$lib/maps/LeafletMap.svelte";
-    import {onMount} from "svelte";
     import {getMarkerLayer, getMarkerLayerEnd} from "../../services/utils.ts";
 
     export let hikes: Hike[];
+    export let addHike: boolean;
+
+    export let category: Category;
 
 </script>
 
 <div data-sveltekit-preload-data="tap" class="container " style="margin-top: 30px">
+    {#if hikes.length === 0}
+        <div class="notification is-link" style="width: 100%">
+            <p>No hikes found</p>
+        </div>
+    {/if}
     <div class="columns is-multiline is-3>">
         {#each hikes as hike}
             <div class="column is-one-third">
@@ -41,7 +48,16 @@
                                 id={hike._id} height="20" location="{{lat: hike.lat, lng: hike.long}}" zoom="8"/>
                 </div>
             </div>
-
         {/each}
+        {#if addHike === true && category._id !== ""}
+            <div class="column is-one-third" style="display:flex; border-style: dashed; border-radius: 30px">
+            <div class="button is-rounded" style="font-size: 4em;  margin: auto;">
+                <span class="icon">
+                    <a href="category/{category._id}/addHike">
+                        <i class="fa-solid fa-plus "></i></a>
+                </span>
+                </div>
+            </div>
+        {/if}
     </div>
 </div>

@@ -1,11 +1,9 @@
 <script lang="ts">
     import HikeImg from "$lib/images/hike_card_carousel.svelte"
-    import {imageStore} from "../../stores.ts";
 
     let currentIndex = 0;
     export let images: string[];
-
-    let currentImage = images[currentIndex];
+    export let currentImage = images[currentIndex];
 
     function next() {
         currentIndex = (currentIndex + 1) % images.length;

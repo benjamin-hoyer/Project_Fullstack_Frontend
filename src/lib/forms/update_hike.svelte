@@ -6,18 +6,17 @@
 
     export let hike: Hike;
     let message = "";
-    let success_message = "Hike updated";
-    let error_message = "Hike update failed";
+    let successMessage = "Hike updated";
+    let errorMessage = "Hike update failed";
 
     async function updateHike(){
         let success = await hikeService.updateHike(hike);
         if(success) {
-            message = success_message;
+            message = successMessage;
         } else {
-            message = error_message;
+            message = errorMessage;
         }
     }
-
 
 </script>
 
@@ -83,5 +82,5 @@
         <button class="button is-primary">Update Hike</button>
 </form>
 
-<Error bind:message={message} success_message={success_message} error_message={error_message} />
+<Error bind:message={message} successMessage={successMessage} errorMessage={errorMessage} />
 

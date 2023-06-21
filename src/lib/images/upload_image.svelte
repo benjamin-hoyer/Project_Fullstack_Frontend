@@ -9,19 +9,20 @@
     export let hike: Hike;
 
     let imageInputString = "Choose a file…";
-    const error_message = "Upload failed";
-    const success_message = "Upload successful";
+    const errorMessage = "Upload failed";
+    const successMessage = "Upload successful";
 
     async function uploadImage() {
         let success = await hikeService.uploadImage(hike._id, imageInput.files[0]);
         hike = await hikeService.getHike(hike._id);
         if (success) {
-            message = success_message;
+            message = successMessage;
             imageStore.set(hike.img);
             imageInputString = "Choose a file…";
             imageInput.value = null;
+
         } else {
-            message = (error_message);
+            message = (errorMessage);
         }
     }
 
@@ -51,4 +52,4 @@
 </div>
 
 
-<Error bind:message={message} success_message={success_message} error_message={error_message} />
+<Error bind:message={message} successMessage={successMessage} errorMessage={errorMessage} />

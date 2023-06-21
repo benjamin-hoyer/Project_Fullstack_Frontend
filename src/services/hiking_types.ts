@@ -13,6 +13,21 @@ export interface LoggedInUser {
     role: string;
 }
 
+export interface AddHike {
+    name: string;
+    start: string;
+    end: string;
+    distance: number;
+    duration: number;
+    description: string;
+    lat: number;
+    long: number;
+    latend: number;
+    longend: number;
+    img: [string];
+    visibility: string;
+}
+
 export interface Hike {
     name: string;
     start: string;
@@ -32,7 +47,7 @@ export interface Hike {
 
 export interface Category {
     name: string;
-    hikes: [Hike];
+    hikes: [];
     userid: string;
     _id: string;
 }

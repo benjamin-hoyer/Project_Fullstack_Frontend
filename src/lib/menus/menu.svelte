@@ -27,7 +27,7 @@
                         <a class="button is-dark" id="admin" href="/admin" class:is-info={active==="admin"}> Admin</a>
                     {/if}
                     <a id="dashboard" class="button is-dark" href="/dashboard" class:is-info={active==="dashboard"}>
-                        Dashboard </a>
+                        Your Own Hikes </a>
                     <a id="map" class="button is-dark" href="/map" class:is-info={active==="map"}>
                         Map </a>
                     <a id="settings" class="button is-dark" href="/settings" class:is-info={active==="settings"}>

@@ -1,5 +1,5 @@
 import axios from "axios";
-import type { Hike } from "./hiking_types";
+import type {AddHike, Hike} from "./hiking_types";
 
 export const hikeService = {
     baseUrl: "http://localhost:4000",
@@ -36,9 +36,9 @@ export const hikeService = {
         }
     },
 
-    async addHike(hike: Hike): Promise<boolean> {
+    async addHike(hike: AddHike, categoryid: string): Promise<boolean> {
         try {
-            await axios.post(`${this.baseUrl}/api/hikes`, hike);
+            await axios.post(`${this.baseUrl}/api/categories/${categoryid}/hikes`, hike);
             return true;
         } catch (error) {
             console.log(error);

@@ -1,6 +1,6 @@
 <script lang="ts">
     import type {Category} from "../services/hiking_types";
-    import {filteredPublicHikeStore, publicHikeStore} from '../stores.js';
+    import {filteredHikeStore, hikeStore, activeCategoryStore} from '../stores.js';
     import {get} from "svelte/store";
 
 
@@ -8,9 +8,14 @@
 
     let current = false;
     function filter(selectedCategory: Category) {
-        filteredPublicHikeStore.set(get(publicHikeStore))
-        filteredPublicHikeStore.update(hikes => hikes.filter(hike => hike.categoryid === selectedCategory._id));
+        filteredHikeStore.set(get(hikeStore))
+        filteredHikeStore.update(hikes => hikes.filter(hike => hike.categoryid === selectedCategory._id));
+        activeCategoryStore.set(selectedCategory);
         return selectedCategory;
+    }
+    function showAll() {
+        filteredHikeStore.set(get(hikeStore))
+        activeCategoryStore.set({hikes: [], userid: "", name: "", _id: ""});
     }
 
 </script>
@@ -26,7 +31,7 @@
     </div>
     <div class="dropdown-menu" id="dropdown-menu" role="menu">
         <div class="dropdown-content">
-            <p class="dropdown-item has-text-weight-bold" on:click={()=> ( filteredPublicHikeStore.set(get(publicHikeStore)))} on:keydown >
+            <p class="dropdown-item has-text-weight-bold" on:click={()=> ( showAll())} on:keydown >
                All Hikes
             </p>
             {#each categories as category}
