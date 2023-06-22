@@ -30,8 +30,8 @@
                         Your Own Hikes </a>
                     <a id="map" class="button is-dark" href="/map" class:is-info={active==="map"}>
                         Map </a>
-                    <a id="settings" class="button is-dark" href="/settings" class:is-info={active==="settings"}>
-                        Settings </a>
+                    <a id="charts" class="button is-dark" href="/charts" class:is-info={active==="charts"}>
+                        Charts </a>
                     <a id="logout" class="button is-dark" href="/logout" class:is-info={active==="logout"}> Logout </a>
                 </div>
             </div>

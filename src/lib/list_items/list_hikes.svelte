@@ -43,7 +43,7 @@
                         </footer>
                     </div>
                 </div>
-                <div>
+                <div >
                     <LeafletMap markerLayers="{[getMarkerLayer([hike]), getMarkerLayerEnd([hike])]}"
                                 id={hike._id} height="20" location="{{lat: hike.lat, lng: hike.long}}" zoom="8"/>
                 </div>

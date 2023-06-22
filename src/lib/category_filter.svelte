@@ -20,7 +20,7 @@
 
 </script>
 
-<div class:is-active="{current}" on:keydown class="dropdown "  on:click={()=> current = !current} style="margin-top: 20px; ">
+<div class:is-active="{current}" on:keydown class="dropdown"  on:click={()=> {current = !current}} >
     <div class="dropdown-trigger">
         <button class="button is-info" aria-haspopup="true" aria-controls="dropdown-menu" >
             <span>Filter after Category</span>
@@ -29,8 +29,8 @@
             </span>
         </button>
     </div>
-    <div class="dropdown-menu" id="dropdown-menu" role="menu">
-        <div class="dropdown-content">
+    <div class="dropdown-menu is-up " id="dropdown-menu" role="menu">
+        <div class="dropdown-content" >
             <p class="dropdown-item has-text-weight-bold" on:click={()=> ( showAll())} on:keydown >
                All Hikes
             </p>

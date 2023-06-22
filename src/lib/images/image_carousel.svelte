@@ -5,7 +5,6 @@
     export let index = 0;
     export let images: string[];
 
-
     function next() {
         index = (index + 1) % images.length;
         currentImageStore.set(images[index]);

@@ -6,7 +6,6 @@
     import {markerSelected} from "../../stores";
 
     export let id = "home-map-id";
-    console.log(id)
     export let height = 80;
     export let location = {lat: 48.2734, lng: 11.7783203};
     export let zoom = 6;
@@ -159,4 +158,4 @@
     }
 </script>
 
-<div {id} class="box" style="height: {height}vh"></div>
+<div {id} class="box" style="height: {height}vh; z-index: 0"></div>

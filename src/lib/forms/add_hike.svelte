@@ -12,8 +12,6 @@
     let errorMessage = "Hike upload failed";
 
     async function addHike(){
-        console.log(hike);
-        console.log(category);
         let success = await hikeService.addHike(hike, category._id);
         if(success) {
             message = successMessage;

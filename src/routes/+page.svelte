@@ -32,5 +32,7 @@
 {:else}
     <StartMenu active="allhikes"/>
 {/if}
+<div style="margin-top: 20px">
 <Filter categories={only_categories_with_hikes(get(hikeStore), data.categories)}/>
+</div>
 <ListHikes hikes={$filteredHikeStore} addHike={false} category={undefined}} />

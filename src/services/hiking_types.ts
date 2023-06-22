@@ -51,3 +51,9 @@ export interface Category {
     userid: string;
     _id: string;
 }
+
+export interface addCategory {
+    name: string;
+    userid: string;
+}
+

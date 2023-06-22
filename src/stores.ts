@@ -13,5 +13,6 @@ export const filteredHikeStore = writable<Hike[]>();
 export const markerSelected = writable<MarkerSpec>();
 
 export const activeCategoryStore = writable<Category>({hikes: [], userid: "", _id: "", name: ""});
+export const categoryStore = writable<Category[]>([]);
 
 export const currentImageStore = writable<string>("");

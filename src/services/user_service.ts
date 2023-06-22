@@ -15,7 +15,6 @@ export const userService = {
                     _id: response.data._id,
                     role: response.data.role
                 });
-                console.log(response.data);
                 const user = JSON.stringify({ email: email, token: response.data.token, _id: response.data._id, role: response.data.role });
                 localStorage.setItem("user", user);
                 return true;
