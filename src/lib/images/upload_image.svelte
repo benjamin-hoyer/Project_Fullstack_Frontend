@@ -5,7 +5,7 @@
     import {imageStore, currentImageStore} from "../../stores.ts";
     import Error from "$lib/error_message.svelte";
     let imageInput;
-    let message;
+    let message: string;
     export let hike: Hike;
 
     let imageInputString = "Choose a file…";

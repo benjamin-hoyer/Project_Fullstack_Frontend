@@ -6,7 +6,7 @@ export const load = async () => {
     userService.checkPageRefresh();
 
     return {
-        publicHikes: await hikeService.getPublicHikes(),
+        hikes: await hikeService.getPublicHikes(),
         categories: await categoryService.getCategories()
     };
 };

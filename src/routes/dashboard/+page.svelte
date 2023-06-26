@@ -7,17 +7,21 @@
     import AddCategory from "$lib/forms/add_category.svelte";
 
     export let data: PageData;
-    hikeStore.set(data.publicHikes);
-    filteredHikeStore.set(data.publicHikes);
+    hikeStore.set(data.hikes);
+    filteredHikeStore.set(data.hikes);
     categoryStore.set(data.categories);
 
 
 </script>
 
-<Menu  active="dashboard"/>
+<Menu active="dashboard"/>
 <div style="display: flex;  justify-content: space-between; margin-top: 20px;">
-<Filter categories={$categoryStore}/>
-<AddCategory/>
+
+    <div class="block" style=" display: flex">
+        <h1 class="title is-2" style="margin: auto; color: #0078A8;">{$activeCategoryStore.name}</h1>
+    </div>
+    <Filter categories={$categoryStore}/>
+    <AddCategory/>
 </div>
 
 <ListHikes hikes={$filteredHikeStore} addHike={true} category={$activeCategoryStore}/>

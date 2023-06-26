@@ -20,6 +20,10 @@
     <div class="navbar-menu" class:is-active={is_active} id="navMenu">
         <div class="navbar-end" style="margin-right: 5%">
             <div class="navbar-item">
+                <a class="button is-dark" id="allHikes" href="/" class:is-info={active==="allhikes"}> All public Hikes</a>
+
+            </div>
+            <div class="navbar-item">
                 <a class="button is-dark" id="login" href="/login" class:is-info={active==="login"}> Log in </a>
             </div>
             <div class="navbar-item">

@@ -26,7 +26,7 @@
 <form on:submit|preventDefault={addCategory}>
     <div class="field has-addons">
         <div class="control">
-            <input class="input" type="text" bind:value={categoryName} name="name" style="margin-bottom: 5%">
+            <input class="input" type="text" required bind:value={categoryName} name="name" style="margin-bottom: 5%">
         </div>
         <div class="control">
             <button class="button is-primary">Add Category</button>

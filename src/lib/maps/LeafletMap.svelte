@@ -35,8 +35,8 @@
             attribution: "Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community"
         })
     };
-    let polyLine: [LatLng] = [];
-    let polyLineEnd: [LatLng] = [];
+    let polyLine: [LatLng] | [] = [];
+    let polyLineEnd: [LatLng] | [] = [];
 
     onMount(async () => {
 
@@ -98,7 +98,7 @@
             markerMap.set(marker, markerSpec);
             marker.addTo(group).on("popupopen", (event: any) => {
                 const marker = event.popup._source;
-                const markerSpec = markerMap.get(marker);
+                const markerSpec: MarkerSpec | undefined = markerMap.get(marker);
                 markerSelected.set(markerSpec);
             });
             // For the Routes between the markers:
@@ -128,7 +128,7 @@
         hiddenMethodMap._onResize();
     }
 
-    export function moveTo(location: LatLng, zoom: number = 0) {
+    export function moveTo(location: LatLng, zoom = 0) {
         if (zoom == 0) {
             imap.flyTo(location);
         } else {

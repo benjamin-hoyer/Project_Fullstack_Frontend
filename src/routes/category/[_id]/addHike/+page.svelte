@@ -3,14 +3,16 @@
     import Menu from "$lib/menus/menu.svelte";
     import AddHike from "$lib/forms/add_hike.svelte";
     import {imageStore} from "../../../../stores.ts";
+    import type {AddHikeType} from "../../../../services/hiking_types.ts";
 
 
     export let data: PageData;
-    let hike: AddHike= {
+    let hike: AddHikeType= {
         description: "",
         distance: 0,
         duration: 0,
         end: "",
+        img: [],
         lat: 0,
         latend: 0,
         long: 0,

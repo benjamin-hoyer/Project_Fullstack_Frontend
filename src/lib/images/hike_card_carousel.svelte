@@ -1,5 +1,5 @@
-<script lang="js">
-    export let hikeImg;
+<script lang="ts">
+    export let hikeImg: string;
 
 
 </script>

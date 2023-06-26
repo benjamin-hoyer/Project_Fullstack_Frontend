@@ -13,7 +13,7 @@ export interface LoggedInUser {
     role: string;
 }
 
-export interface AddHike {
+export interface AddHikeType {
     name: string;
     start: string;
     end: string;
@@ -24,7 +24,7 @@ export interface AddHike {
     long: number;
     latend: number;
     longend: number;
-    img: [string];
+    img: [];
     visibility: string;
 }
 
@@ -46,14 +46,21 @@ export interface Hike {
 }
 
 export interface Category {
-    name: string;
     hikes: [];
+    name: string;
     userid: string;
     _id: string;
 }
 
-export interface addCategory {
+export interface AddCategory {
     name: string;
     userid: string;
 }
+
+export interface ChartData {
+    labels: string[];
+    datasets: [{ values: number[] }];
+    colors: ['purple', '#ffa3ef', 'light-blue'],
+}
+
 

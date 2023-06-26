@@ -1,11 +1,11 @@
 <script lang="ts">
 
-    import type {AddHike, Category, Hike} from "../../services/hiking_types";
+    import type {AddHikeType, Category, Hike} from "../../services/hiking_types";
     import { hikeService } from "../../services/hike_service.ts";
     import Error from "$lib/error_message.svelte";
     import {goto} from "$app/navigation";
 
-    export let hike: AddHike;
+    export let hike: AddHikeType;
     export let category: Category;
     let message = "";
     let successMessage = "Hike added successfully";

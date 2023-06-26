@@ -1,6 +1,6 @@
 import axios from "axios";
 import {userStore} from "../stores";
-import type {addCategory, Category, Hike} from "./hiking_types";
+import type {AddCategory, Category} from "./hiking_types";
 import {get} from "svelte/store";
 
 export const categoryService = {
@@ -39,7 +39,7 @@ export const categoryService = {
     },
 
     async addCategory(categoryName: string): Promise<Category> {
-        const category: addCategory = {name: "", userid: ""};
+        const category: AddCategory = {name: "", userid: ""};
         try {
             category.name = categoryName;
             category.userid = get(userStore)._id;

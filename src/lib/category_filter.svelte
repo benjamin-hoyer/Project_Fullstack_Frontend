@@ -15,7 +15,7 @@
     }
     function showAll() {
         filteredHikeStore.set(get(hikeStore))
-        activeCategoryStore.set({hikes: [], userid: "", name: "", _id: ""});
+        activeCategoryStore.set({hikes: [], userid: "", name: "All Hikes", _id: ""});
     }
 
 </script>
