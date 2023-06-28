@@ -3,6 +3,9 @@
     import type { Hike} from "../../services/hiking_types";
     import { hikeService } from "../../services/hike_service.ts";
     import Error from "$lib/error_message.svelte";
+    import { createEventDispatcher } from 'svelte';
+    const dispatch = createEventDispatcher();
+
 
     export let hike: Hike;
     let message = "";
@@ -13,6 +16,7 @@
         let success = await hikeService.updateHike(hike);
         if(success) {
             message = successMessage;
+            dispatch("hikeUpdated", hike)
         } else {
             message = errorMessage;
         }

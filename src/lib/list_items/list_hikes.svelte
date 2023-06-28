@@ -2,7 +2,7 @@
     import type {Category, Hike} from '../../services/hiking_types';
     import HikeImg from '../images/hike_card.svelte'
     import LeafletMap from "$lib/maps/LeafletMap.svelte";
-    import {getMarkerLayer, getMarkerLayerEnd} from "../../services/utils.ts";
+    import {getMarkerLayer, getMarkerLayerEnd} from "../../services/map_utils.ts";
 
     export let hikes: Hike[];
     export let addHike: boolean;
@@ -58,3 +58,5 @@
         {/if}
     </div>
 </div>
+
+<!--TODO send message to update weather-->

@@ -40,7 +40,8 @@
     filteredHikeStore.set(data.hikes);
     categoryStore.set(data.categories);
 
-    export async function refreshChart() {
+
+    function refreshChart() {
         let hikes = get(filteredHikeStore);
         byDistance = analyticsUtils.hikeDataDistance(hikes);
         byDuration = analyticsUtils.hikeDataDuration(hikes);
@@ -54,7 +55,7 @@
 
     onMount(async () => {
         let category = get(activeCategoryStore);
-        await refreshChart()
+        refreshChart()
     });
 
 </script>
@@ -72,30 +73,30 @@
 {#if $currentTypeStore === "bar"}
     <div class="box has-text-centered" style="width: 80%; margin: 0 auto 20px;">
         <h1 class="title is-4">Hike Kilometers</h1>
-        <Chart bind:data={byDistance} type={"bar"}/>
+        <Chart data={byDistance} type="line" />
     </div>
     <div class="box has-text-centered" style="width: 80%; margin: 0 auto 20px;">
         <h1 class="title is-4"> Hike Durations </h1>
-        <Chart bind:data={byDuration} type="bar"/>
+        <Chart data={byDuration} type="line" />
     </div>
 
 {:else if $currentTypeStore === "pie"}
     <div class="box has-text-centered" style="width: 80%; margin: 0 auto 20px;">
         <h1 class="title is-4">Hike Kilometers</h1>
-        <Chart bind:data={ byDistancePercentage} type={"pie"}/>
+        <Chart data={byDistancePercentage} type="pie"/>
     </div>
     <div class="box has-text-centered" style="width: 80%; margin: 0 auto 20px;">
         <h1 class="title is-4"> Hike Durations </h1>
-        <Chart bind:data={ byDurationPercentage} type="pie"/>
+        <Chart data={ byDurationPercentage} type="pie"/>
     </div>
 {:else if $currentTypeStore === "percentage"}
     <div class="box has-text-centered" style="width: 80%; margin: 0 auto 20px;">
         <h1 class="title is-4">Hike Kilometers</h1>
-        <Chart bind:data={byDistancePercentage} type={"percentage"}/>
+        <Chart data={byDistancePercentage} type="percentage"/>
     </div>
     <div class="box has-text-centered" style="width: 80%; margin: 0 auto 20px;">
         <h1 class="title is-4"> Hike Durations </h1>
-        <Chart bind:data={byDurationPercentage} type="percentage"/>
+        <Chart data={byDurationPercentage} type="percentage"/>
     </div>
 {/if}
 <div class="buttons is-centered">

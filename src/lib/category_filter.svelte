@@ -18,6 +18,8 @@
         activeCategoryStore.set({hikes: [], userid: "", name: "All Hikes", _id: ""});
     }
 
+    showAll();
+
 </script>
 
 <div class:is-active="{current}" on:keydown class="dropdown"  on:click={()=> {current = !current}} >

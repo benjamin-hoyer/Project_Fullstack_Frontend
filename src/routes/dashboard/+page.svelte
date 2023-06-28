@@ -11,7 +11,6 @@
     filteredHikeStore.set(data.hikes);
     categoryStore.set(data.categories);
 
-
 </script>
 
 <Menu active="dashboard"/>

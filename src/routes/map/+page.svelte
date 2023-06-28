@@ -3,7 +3,7 @@
 	import LeafletMap from "$lib/maps/LeafletMap.svelte";
 	import type { PageData } from "./$types";
     import { onMount } from "svelte";
-    import {getMarkerLayer, getMarkerLayerEnd} from "../../services/utils.ts";
+    import {getMarkerLayer, getMarkerLayerEnd} from "../../services/map_utils.ts";
 
     let hikingMarkerLayer;
     let hikingMarkerLayerEnd;

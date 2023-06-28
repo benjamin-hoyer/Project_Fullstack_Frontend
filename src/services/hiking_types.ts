@@ -60,7 +60,7 @@ export interface AddCategory {
 export interface ChartData {
     labels: string[];
     datasets: [{ values: number[] }];
-    colors: ['purple', '#ffa3ef', 'light-blue'],
+    colors: [string],
 }
 
 

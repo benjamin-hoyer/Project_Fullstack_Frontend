@@ -1,7 +1,7 @@
 import { userService} from "../../services/user_service.ts";
 import { hikeService } from "../../services/hike_service.ts";
 import { categoryService } from "../../services/category_service.ts";
-import {userStore} from "../../stores.ts";
+import {categoryStore, userStore} from "../../stores.ts";
 import {get} from "svelte/store";
 import type {Hike} from "../../services/hiking_types.ts";
 import {error} from "@sveltejs/kit";

@@ -1,4 +1,4 @@
-import type { Category, ChartData, Hike} from "./hiking_types.ts";
+import type { ChartData, Hike} from "./hiking_types.ts";
 
 export const analyticsUtils = {
     hikesInCategory(hikes: Hike[]) {
@@ -40,7 +40,9 @@ export const analyticsUtils = {
             labels.push(hikes[i].name);
             values.push(hikes[i].distance);
         }
-        return {labels, datasets: [{values}], colors: ['purple', '#ffa3ef', 'light-blue'],};
+        labels.push('Trend');
+        values.push(this.averageDistanceInCategory(hikes));
+        return {labels, datasets: [{values}], colors: ['red'],};
     },
 
     hikeDataDuration(hikes: Hike[]): ChartData {
@@ -50,7 +52,9 @@ export const analyticsUtils = {
             labels.push(hikes[i].name);
             values.push(hikes[i].duration);
         }
-        return {labels, datasets: [{values}], colors: ['purple', '#ffa3ef', 'light-blue'],};
+        labels.push('Trend');
+        values.push(this.averageDurationInCategory(hikes));
+        return {labels, datasets: [{values}], colors: ["red"],};
     },
 
     hikeDataDistancePercentage(hikes: Hike[]): ChartData {
@@ -61,7 +65,7 @@ export const analyticsUtils = {
             labels.push(hikes[i].name);
             values.push(hikes[i].distance / total * 100);
         }
-        return {labels, datasets: [{values}], colors: ['purple', '#ffa3ef', 'light-blue'],};
+        return {labels, datasets: [{values}], colors: ['red'] };
     },
 
     hikeDataDurationPercentage(hikes: Hike[]): ChartData {
@@ -72,7 +76,7 @@ export const analyticsUtils = {
             labels.push(hikes[i].name);
             values.push(hikes[i].duration / total * 100);
         }
-        return {labels, datasets: [{values}], colors: ['purple', '#ffa3ef', 'light-blue'],};
+        return {labels, datasets: [{values}], colors: ['purple'],};
     }
 };
 
