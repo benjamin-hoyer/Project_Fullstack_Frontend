@@ -1,14 +1,13 @@
 <script lang="ts">
-  let errorMessage = "";
+	let errorMessage = '';
 </script>
 
 <div class="container">
-  <slot />
+	<slot />
 </div>
 
 {#if errorMessage}
-  <div class="section">
-    {errorMessage}
-  </div>
+	<div class="section">
+		{errorMessage}
+	</div>
 {/if}
-

@@ -1,4 +1,4 @@
-import type { LatLng } from "leaflet";
+import type { LatLng } from 'leaflet';
 
 export interface MarkerSpec {
 	id: string;
