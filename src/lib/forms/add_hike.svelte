@@ -50,23 +50,23 @@
 	<div class="field">
 		<label class="label"
 			>Duration in minutes
-			<input class="input" type="number" bind:value={hike.duration} name="duration" /></label
+			<input class="input" type="number" step="any" bind:value={hike.duration} name="duration" /></label
 		>
 	</div>
 	<div class="field">
 		<label class="label"
 			>Distance in km
-			<input class="input" type="number" bind:value={hike.distance} name="distance" />
+			<input class="input" type="number" step="any" bind:value={hike.distance} name="distance" />
 		</label>
 	</div>
 	<p class="label">Latitude / Longitude</p>
 	<div class="field is-horizontal">
 		<div class="field-body">
 			<div class="field">
-				<input class="input" type="number" bind:value={hike.lat} name="lat" />
+				<input class="input" type="number" step="any" bind:value={hike.lat} name="lat" />
 			</div>
 			<div class="field">
-				<input class="input" type="number" bind:value={hike.long} name="long" />
+				<input class="input" type="number" step="any" bind:value={hike.long} name="long" />
 			</div>
 		</div>
 	</div>
@@ -74,10 +74,10 @@
 	<div class="field is-horizontal">
 		<div class="field-body">
 			<div class="field">
-				<input class="input" type="number" bind:value={hike.latend} name="latend" />
+				<input class="input" type="number" step="any" bind:value={hike.latend} name="latend" />
 			</div>
 			<div class="field">
-				<input class="input" type="number" bind:value={hike.longend} name="longend" />
+				<input class="input" type="number" step="any" bind:value={hike.longend} name="longend" />
 			</div>
 		</div>
 	</div>

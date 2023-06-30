@@ -40,7 +40,7 @@
 				<i style="margin: auto" class="fa-solid fa-compass fa-3x" />
 			</div>
 		</div>
-		<div />
-		<!--without last box gets displayed wrong-->
+		<div></div>
+		<!--without last box, it gets displayed wrong-->
 	</div>
 {/if}
