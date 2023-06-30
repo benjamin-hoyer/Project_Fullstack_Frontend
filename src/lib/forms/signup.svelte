@@ -1,12 +1,14 @@
 <script>
     import {goto} from '$app/navigation';
     import {userService} from '../../services/user_service.ts';
+    import Error from "$lib/error_message.svelte";
 
     let firstName = '';
     let lastName = '';
     let email = '';
     let password = '';
-    let errorMessage = '';
+    let message = '';
+    let errorMessage = 'Error Trying to sign up';
 
     async function signup() {
         console.log(`attempting to sign up email: ${email}`);
@@ -14,17 +16,17 @@
         if (success) {
             goto('/');
         } else {
-            errorMessage = 'Error Trying to sign up';
+            message = errorMessage;
         }
     }
 </script>
 
 <h1 class="title">Sign up</h1>
 <form on:submit|preventDefault={signup}>
+    <p class="label">Name </p>
     <div class="field is-horizontal">
         <div class="field-body">
-            <p class="label"
-            >Name </p>
+
             <div class="field">
 
                 <input
@@ -74,8 +76,4 @@
     </div>
 </form>
 
-{#if errorMessage}
-    <div class="section">
-        {errorMessage}
-    </div>
-{/if}
+<Error bind:message {errorMessage} successMessage="success"/>

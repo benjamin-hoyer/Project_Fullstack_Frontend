@@ -9,7 +9,7 @@
 		<div class="message is-danger">
 			<div class="message-body" style="display: flex">
 				{message}
-				<button class="delete" on:click={() => (message = '')} style="margin: auto 0 auto auto" />
+				<button class="delete" on:click={() => (message = '')} style="margin: auto 0 auto auto"></button>
 			</div>
 		</div>
 	</div>
@@ -17,7 +17,7 @@
 	<div class="message is-success">
 		<div class="message-body" style="display: flex">
 			{message}
-			<button class="delete" on:click={() => (message = '')} style="margin: auto 0 auto auto" />
+			<button class="delete" on:click={() => (message = '')} style="margin: auto 0 auto auto"></button>
 		</div>
 	</div>
 {/if}
