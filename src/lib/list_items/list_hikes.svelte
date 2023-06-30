@@ -36,7 +36,7 @@
 						<div class="content">
 							<p class=""><b>Description:</b> &nbsp {hike.description}</p>
 							<p class=""><b>Distance</b>: &nbsp {hike.distance} km</p>
-							<p class=""><b>Duration</b>: &nbsp {hike.duration} hours</p>
+							<p class=""><b>Duration</b>: &nbsp {hike.duration} minutes</p>
 						</div>
 					</div>
 					<div class="card">
